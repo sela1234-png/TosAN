@@ -29,7 +29,11 @@
       <h1 class="text-lg font-semibold">Book Categories</h1>
       <div class="relative">
         <button class="text-sm" onclick="showFavorites()">
-          <span><i class="fas fa-heart text-xl"></i></span> Favorite (<span id="favCount">0</span>)
+          <a href="html/add-fav.html" class="flex items-center space-x-2 text-white">
+            <i class="fas fa-heart text-xl"></i>
+            <span>Favorites</span>
+            <span class="text-xs bg-red-600 text-white rounded-full px-2 py-1">0</span>
+          </a>
         </button>
       </div>
     </div>

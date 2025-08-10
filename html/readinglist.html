@@ -42,9 +42,8 @@
 </head>
 
 <body class="bg-gray-50 min-h-screen">
-  <!-- Top Header Bar -->
   <div class="w-full p-4 shadow-sm" style="background-color: #803030;">
-    <div class="flex  justify-between max-w-full mx-auto">
+    <div class="flex justify-between items-center max-w-full mx-auto">
       <div class="flex items-center gap-4">
         <a href="../index.html">
           <button class="text-white hover:text-white/80 transition-colors flex items-center">
@@ -71,10 +70,8 @@
     </div>
   </div>
 
-  <div class="flex min-h-screen">
-    <!-- Sidebar -->
-    <div class="w-80 p-6">
-      <!-- Floating Card -->
+  <div class="flex  flex-col xl:flex-col min-h-screen">
+    <div class="w-full lg:w-80 p-6">
       <div class="rounded-3xl p-6 shadow-lg" style="background-color: #803030;">
         <h1 class="text-white text-2xl font-bold mb-8">My Lists</h1>
 
@@ -82,7 +79,7 @@
           <button onclick="showPage('currentlyReading')" id="btn-currentlyReading"
             class="w-full p-4 rounded-xl border transition-all duration-200 text-white"
             style="background-color: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3);">
-            <div class="text-left">
+            <div class="">
               <div class="font-medium text-lg">Currently Reading</div>
               <div class="text-sm opacity-80" id="count-currentlyReading">0 books</div>
             </div>
@@ -109,15 +106,13 @@
       </div>
     </div>
 
-    <!-- Main Content -->
     <div class="flex-1 p-8">
       <div class="max-w-4xl mx-auto">
-        <!-- Header -->
         <div class="mb-8">
           <h2 id="page-title" class="text-4xl font-bold text-gray-900 mb-2">Currently Reading</h2>
           <p id="page-subtitle" class="text-gray-600 text-lg mb-6">Book I'm actively reading</p>
 
-          <div class="flex items-center gap-4">
+          <div class="flex flex-wrap items-center gap-4">
             <div class="bg-white border border-gray-300 rounded-full px-4 py-2 text-gray-700" id="book-count">
               0 Books
             </div>
@@ -133,7 +128,6 @@
           </div>
         </div>
 
-        <!-- Empty State -->
         <div id="empty-state" class="text-center py-20">
           <div class="mb-8 flex justify-center">
             <div class="book-stack">
@@ -146,20 +140,19 @@
           <h3 class="text-2xl font-bold text-gray-900 mb-4">No books in this list</h3>
           <p class="text-gray-600 mb-8 text-lg">Start adding books track your reading progress</p>
 
-          <button
-            class="px-8 py-3 rounded-xl font-medium transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-white"
-            style="background-color: #803030;" onmouseover="this.style.backgroundColor='#703030'"
-            onmouseout="this.style.backgroundColor='#803030'">
-            Browse Books
-          </button>
+          <a href="../index.html">
+            <button
+              class="px-8 py-3 rounded-xl font-medium transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-white"
+              style="background-color: #803030;" onmouseover="this.style.backgroundColor='#703030'"
+              onmouseout="this.style.backgroundColor='#803030'">
+              Browse Books
+            </button>
+          </a>
         </div>
 
-        <!-- Books Grid (hidden initially) -->
-        <div id="books-grid" class=" grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 hidden">
-          <!-- Books will be added here dynamically -->
+        <div id="books-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 hidden">
         </div>
 
-        <!-- Add Book Button (floating) -->
         <button
           class="fixed bottom-8 right-8 p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 transform hover:-translate-y-1 text-white"
           style="background-color: #803030;" onmouseover="this.style.backgroundColor='#703030'"
@@ -172,7 +165,6 @@
       </div>
     </div>
   </div>
-  <!-- Footer -->
   <footer class="bg-[#803030] text-white mt-10">
     <div class="max-w-7xl mx-auto px-4 py-10">
       <div class="text-center mb-10 px-4">
@@ -352,8 +344,8 @@
       const grid = document.getElementById('books-grid');
       const currentBooks = books[currentPage];
 
-      grid.innerHTML = currentBooks.map(book => `
-                <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200 p-6">
+      grid.innerHTML = currentBooks.map(book =>
+        `<div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-200 p-6">
                     <div class="w-full h-48 bg-gray-200 rounded-lg mb-4 flex items-center justify-center">
                         ${book.cover ?
           `<img src="${book.cover}" alt="${book.title}" class="w-full h-full object-cover rounded-lg">` :
@@ -365,8 +357,8 @@
                     </div>
                     <h4 class="font-bold text-gray-900 mb-2 line-clamp-2">${book.title}</h4>
                     <p class="text-gray-600 text-sm">${book.author}</p>
-                </div>
-            `).join('');
+                </div>`
+      ).join('');
     }
 
     // Initialize when page loads
